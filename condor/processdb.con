@@ -1,0 +1,14 @@
+Universe        = vanilla
+GetEnv          = True
+Notification    = Error
+Notify_user     = cwong14@student.gsu.edi
+Priority        = +0
+Initialdir      = /data9/ping/eic/likelihood/condor
+Executable      = /data9/ping/eic/likelihood/condor/rundb.csh
+Arguments       = 548
+Log             = /data9/ping/eic/likelihood/condor/rundb_log/548.log
+Output          = /data9/ping/eic/likelihood/condor/rundb_log/548.out
+Error           = /data9/ping/eic/likelihood/condor/rundb_log/548.err
++Experiment     = "phenix"
++Job_Type       = "gsu"
+Queue    1

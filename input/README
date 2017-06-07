@@ -1,0 +1,18 @@
+=============================================================
+0. make softlink of input root files
+
+=============================================================
+1. make a .list file to list all full paths of the input
+   root files
+-------------------------------------------------------------
+$ ls -1 /data7/xueliang/eRD11/eic_rich/modular_rich/likelihood/input/G4_data/*root > G4_data.list
+
+=============================================================
+2. rename all input root files by number using Split.C
+-------------------------------------------------------------
+change arguments in Split.C :
+  1. number of .list file
+  2. directory of output files
+
+$ root Split.C
+=============================================================

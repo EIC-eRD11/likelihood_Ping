@@ -1,0 +1,71 @@
+==================================================================
+=========== Steps of Generate Likelihood Histograms ==============
+modified from Liang's directory on data7:
+/data7/xueliang/eRD11/eic_rich/modular_rich/likelihood/
+==================================================================
+==================================================================
+Follow this order to produce difference histograms:
+------------------------------------------------------------------
+1. Histograms under output/G4_db/
+2. DB_thetaXX_phiXX.root under input/
+3. Histograms under output/G4_data/
+4. G4_data_all.root under output/
+5. LogLikelihood.root under macros/
+
+detail of producing these files is shown below
+
+==================================================================
+(1) run GEMC under /data9/ping/modularRICH_condor
+
+==================================================================
+(2) make list of input files
+------------------------------------------------------------------
+1. $ cd /data9/ping/likelihood/input
+2. $ ls -1 /data9/ping/eic/modularRICH_condor/output/* > G4_db.list
+3. $ ls -1 /data9/ping/eic/modularRICH_condor/output/* > G4_data.list
+4. $ mkdir G4_dblist
+5. $ ln -sf G4_dblist G4_datalist
+6. $ root Split.C
+==================================================================
+(3) Make File -- compile src/*, and generate bin/analysis
+------------------------------------------------------------------
+0. open a new terminal
+1. source /opt/phenix/bin/phenix_setup.csh
+2. make
+3. make clean if it's needed
+
+if it doesn't work, $which root , 64 bit?
+
+==================================================================
+(3) Submit Condor Jobs
+------------------------------------------------------------------
+0.(a) rm /data9/ping/eic/likelihood/output/G4_db/*
+0.(b) rm /data9/ping/eic/likelihood/output/G4_data/*
+1. cd /data9/ping/eic/likelihood/condor
+2.(a) generate G4_db: run script -- rundb.csh
+                      condor script -- submitdb.csh
+2.(b) generate G4_data: run script -- rundata.csh
+                        condor script -- submitdata.csh
+3 submit condor job on a fresh terminal. 
+  $ ./submitdata.csh or $ ./submitdb.csh
+
+===================================================================
+(4) Stack Output files/histogram
+-------------------------------------------------------------------
+1. $ cd /data9/ping/eic/likelihood/output 
+2.(a) merge G4_data : $ ./merge_data.csh
+2.(b) merge G4_db : $ ./merge_db.csh
+
+* To check number of files : $ ls -1 kaon-*theta25_phi45.root | wc -l 
+
+===================================================================
+(5) Generate LogLikelihood.root
+-------------------------------------------------------------------
+1. $ cd /data9/ping/eic/likelihood/macros
+2. source root
+3. root Analysis.C
+
+===================================================================
+(6) Make Plots
+-------------------------------------------------------------------
+
