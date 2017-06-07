@@ -1,4 +1,4 @@
-
+* note from Ping
 
 Attached is the likelihood analysis code I used. I made quite a lot modifications from Liang's code to simplify the work flow. Yet, it is still a complicated process. I wrote a few README files about the running procedures last year, I hope they help a bit.
 
@@ -11,4 +11,9 @@ Here I would like to clarify the difference between two labels, "data" (G4_data,
 A technical note, written by Liang, gives details on the Likelihood analysis and results. One way to familiar with the analysis code is to produce plots like figure 15-27 in the technical note. However, you will need to modify some numbers, such as hit position cut. Since the attached code still aims to the 1st prototype study. In the single modular RICH simulation study, the front side of sensor is at z=173.725mm. To figure out the position of each component, you can look up the position and half size in xyz of the components that are printed out on screen when configuring detector geometry ($ ./geometry.pl config.dat).
 
  
+
+* note from Zhiwen
+
+I update Makefile to not force 32bit compling
+I confimr it compiles fine by source your set_eic, then type make
 
